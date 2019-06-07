@@ -43,14 +43,34 @@ header a{
 
 input{
     border: 1px solid #cccccc;
-    padding: 8px;
+    padding: 10px;
+    min-width: 450px;
 }
 
 button{
     cursor: pointer;
-    border: 1px solid #888888;
-    background: #888888;
-    color: white;
-    padding: 8px;
+    border: 2px solid #888888;
+    background: #ffbf58;
+    border-radius: 0.2em;
+    color: #888888;
+    padding: 10px;
 
+}
+
+th{
+    border-bottom: 2px solid black;
+    background: black;
+    color: #888888;
+    padding: 10px;
+
+}
+td,tr{
+    padding: 10px;
+    border-bottom: 2px solid black;
+}
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+table{
+    border-collapse: collapse;
+    border: 1px solid black;
 }

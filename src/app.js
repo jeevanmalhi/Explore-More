@@ -3,6 +3,7 @@ const path = require('path')
 const hbs = require('hbs')
 const geoCode = require('./utils/geoCode.js');
 const forecast = require('./utils/forecast.js')
+const pointOfInterest = require('./utils/pointOfInterest.js')
 
 const app = express()
 const port = process.env.PORT || 3000
@@ -22,7 +23,7 @@ app.use(express.static(dirPath))
 
 app.get('', (req, res) => {
     res.render('index',{
-        title:'Weather',
+        title:'Explore',
         name:'Jeevan Malhi'
     })
 })
@@ -41,7 +42,7 @@ app.get('/help',(req, res) => {
         name:'Jeevan Malhi'
     })
 })
-app.get('/weather', (req,res) => {
+app.get('/explore', (req,res) => {
     if(!req.query.address){
         return res.send({
             error: 'You must provide an address'
@@ -55,10 +56,18 @@ app.get('/weather', (req,res) => {
             if(error)
             return res.send({Error: error})
             
+        pointOfInterest(location, (error, poi) => {
+            if(error)
+            return res.send({Error: error})
+
             res.send({
                 location,
-                forecast: forecastData
+                forecast: forecastData,
+                pointOfInterest: poi
             })
+
+        })
+            
         })
         
     })
